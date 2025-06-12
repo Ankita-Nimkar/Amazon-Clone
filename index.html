@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/social.png" />
+    <title>Amazon</title>
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/header.css" />
+    <link rel="stylesheet" href="styles/checkout.css" />
+    <link rel="stylesheet" href="styles/checkoutHeader.css" />
+  </head>
+  <body>
+    <header>
+      <a href="index.html">
+        <img
+          src="./images/amazon-mobile-logo-white.png"
+          alt="amazon logo"
+          class="amazon-mobile-logo"
+        />
+        <img
+          src="./images/amazon-logo-white.png"
+          alt="amazon logo"
+          class="amazon-logo"
+        />
+      </a>
+
+      <div class="search-tab">
+        <input type="text" placeholder="Search" id="search-bar" />
+        <button class="search-btn">
+          <img
+            src="./images/search-icon.png"
+            alt="search icon"
+            srcset=""
+            class="search-icon"
+          />
+        </button>
+      </div>
+
+      <div class="hamburger-menu">
+        <div class="up-line line"></div>
+        <div class="mid-line line"></div>
+        <div class="bot-line line"></div>
+      </div>
+
+      <div class="overlay">
+        <ul class="menu-items">
+          <li><a class="return-orders" href="">Returns & Orders</a></li>
+          <li>
+            <a class="cart" href="checkout.html"
+              >Cart(<span class="cart-quantity">0</span>)</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="desktop-links">
+        <ul class="menu-items">
+          <li><a class="return-orders" href="">Returns & Orders</a></li>
+          <li class="cart cart-hover cart-btn">
+            <img
+              src="./images/cart-icon.png"
+              alt="cart-icon"
+              srcset=""
+              class="cart-icon"
+            />
+            <span class="cart-quantity">0</span>
+            <a class="cart" href="checkout.html">Cart</a>
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <main>
+      <div class="product-container"></div>
+    </main>
+
+    <script src="data/products.js"></script>
+    <script type="module" src="scripts/script.js"></script>
+    <script src="scripts/header.js"></script>
+    <script src="scripts/cart.js"></script>
+    <script src="scripts/checkout.js"></script>
+  </body>
+</html>
