@@ -1,3 +1,6 @@
+import { cart } from "../data/cart.js";
+import { updateCartQuantity } from "./amazon.js";
+updateCartQuantity();
 //overlay
 const hamburgerMenu = document.querySelector(".hamburger-menu");
 const overlay = document.querySelector(".overlay");

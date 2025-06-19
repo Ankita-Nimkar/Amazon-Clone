@@ -26,7 +26,7 @@
     <div class="checkout-header">
       <div class="header-content">
         <div class="checkout-header-left-section">
-          <a href="index.html">
+          <a href="amazon.html">
             <img class="amazon-logo" src="images/amazon-logo.png" />
             <img
               class="amazon-mobile-logo"
@@ -36,7 +36,8 @@
         </div>
 
         <div class="checkout-header-middle-section">
-          Checkout (<a class="return-to-home-link" href="amazon.html">0 items</a
+          Checkout (<a class="return-to-home-link" href=""
+            ><span class="total-checkout-items">0 </span>items</a
           >)
         </div>
 
@@ -55,8 +56,11 @@
         <div class="payment-summary js-payment-summary"></div>
       </div>
     </div>
-
-    <script type="module" src="scripts/checkout.js"></script>
-    <script type="module" src="scripts/cart.js"></script>
+    <script type="module" src="data/cart.js"></script>
+    <script type="module" src="scripts/checkout/checkout.js"></script>
+    <script
+      type="module"
+      src="scripts/checkout/checkoutPaymentSummary.js"
+    ></script>
   </body>
 </html>
