@@ -1,5 +1,17 @@
 import { cart } from "../data/cart.js";
-import { updateCartQuantity } from "./amazon.js";
+export function updateCartQuantity() {
+  let updateCartQuantity = 0;
+
+  cart.forEach((cartItem) => {
+    updateCartQuantity += cartItem.quantity;
+  });
+
+  ////////////////show cart quantity
+  const cartQuantity = document.querySelectorAll(".cart-quantity");
+  cartQuantity.forEach((qty) => {
+    qty.innerHTML = updateCartQuantity;
+  });
+}
 updateCartQuantity();
 //overlay
 const hamburgerMenu = document.querySelector(".hamburger-menu");

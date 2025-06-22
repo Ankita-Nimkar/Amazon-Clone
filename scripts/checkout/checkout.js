@@ -1,11 +1,11 @@
 import { cart } from "../../data/cart.js";
 import { renderPaymentSummary } from "./checkoutPaymentSummary.js";
-console.log(updateQuantity());
-console.log();
+// console.log(updateQuantity());
 
 updateCartQuantity();
-let cartSummaryHTML = "";
+
 function renderCartSummaryHtml() {
+  let cartSummaryHTML = "";
   cart.forEach((el) => {
     cartSummaryHTML += `
     <div class="cart-item-container
@@ -22,18 +22,30 @@ function renderCartSummaryHtml() {
           <div class="product-name">
             ${el.name}
           </div>
-         
+         <div class="product-price">
+               $${(el.priceCents / 100).toFixed(2)}
+              </div>
           <div class="product-quantity">
             <span>
-              Quantity: <span class="quantity-label quantity-label-${el.id}">${el.quantity}</span><span><input type="number" class="new-quantity-input  new-quantity-input-${el.id} hidden" value="${el.quantity}"></span>
+              Quantity: <span class="quantity-label quantity-label-${el.id}">${
+      el.quantity
+    }</span><span><input type="number" class="new-quantity-input  new-quantity-input-${
+      el.id
+    } hidden" value="${el.quantity}"></span>
             </span>
-            <span class="update-quantity-link update-${el.id} link-primary" data-product-id="${el.id}" >
+            <span class="update-quantity-link update-${
+              el.id
+            } link-primary" data-product-id="${el.id}" >
               Update
             </span>
-               <span class="save-quantity-link save-${el.id} link-primary hidden" data-product-id="${el.id}" >
+               <span class="save-quantity-link save-${
+                 el.id
+               } link-primary hidden" data-product-id="${el.id}" >
               Save
             </span>
-            <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${el.id}">
+            <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${
+              el.id
+            }">
               Delete
             </span>
           </div>
@@ -91,7 +103,22 @@ function renderCartSummaryHtml() {
 
   document.querySelector(".js-order-summary").innerHTML = cartSummaryHTML;
 }
-renderCartSummaryHtml();
+function renderEmptyCartHtml() {
+  let emptyCartHtml = "";
+  emptyCartHtml = `
+  <div data-testid="empty-cart-message">
+        Your cart is empty.
+      </div>
+  <a class="button-primary view-products-link" href="." data-testid="view-products-link">
+        View products
+      </a>`;
+  document.querySelector(".js-order-summary").innerHTML = emptyCartHtml;
+}
+if (cart.length !== 0) {
+  renderCartSummaryHtml();
+} else {
+  renderEmptyCartHtml();
+}
 
 function updateBtn() {
   document.querySelectorAll(".update-quantity-link").forEach((btn) => {
@@ -136,14 +163,19 @@ function saveBtn() {
           document.querySelector(`.save-${targetId}`).classList.add("hidden");
         }
       });
-      cartSummaryHTML = "";
 
       document.querySelector(".js-order-summary").innerHTML = "";
 
-      renderCartSummaryHtml();
+      if (cart.length !== 0) {
+        renderCartSummaryHtml();
+      } else {
+        renderEmptyCartHtml();
+      }
+
       updateBtn();
       console.log(cart);
       saveBtn();
+
       addToLocalStorage(cart);
     });
   });
@@ -167,16 +199,16 @@ function deleteBtn() {
         }
       });
       console.log(cart);
-      cartSummaryHTML = "";
-
-      document.querySelector(".js-order-summary").innerHTML = "";
-
-      renderCartSummaryHtml();
-
-      addToLocalStorage(cart);
+      if (cart.length !== 0) {
+        renderCartSummaryHtml();
+      } else {
+        renderEmptyCartHtml();
+      }
       updateBtn();
       saveBtn();
       deleteBtn();
+
+      addToLocalStorage(cart);
     });
   });
   updateCartQuantity();
@@ -197,7 +229,7 @@ function updateQuantity() {
   });
   return updateCartQuantity;
 }
-console.log(updateQuantity());
+
 function addToLocalStorage(cart) {
   localStorage.setItem("cart", JSON.stringify(cart));
 }

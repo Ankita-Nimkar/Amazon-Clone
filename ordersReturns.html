@@ -1,15 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/social.png" />
-    <title>Amazon</title>
-    <link rel="shortcut icon" href="#" />
-    <link rel="stylesheet" href="styles/style.css" />
+    <title>Orders</title>
+
+    <!-- This code is needed for responsive design to work.
+      (Responsive design = make the website look good on
+      smaller screen sizes like a phone or a tablet). -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Load a font called Roboto from Google Fonts. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Here are the CSS files for this page. -->
+
+    <link rel="stylesheet" href="styles/orders.css" />
     <link rel="stylesheet" href="styles/header.css" />
-    <link rel="stylesheet" href="styles/checkout.css" />
-    <link rel="stylesheet" href="styles/checkoutHeader.css" />
   </head>
   <body>
     <header>
@@ -79,11 +89,15 @@
       </div>
     </header>
 
-    <main>
-      <div class="product-container"></div>
-    </main>
+    <div class="main">
+      <div class="page-title">Your Orders</div>
 
-    <script src="scripts/amazon.js" type="module"></script>
-    <script src="scripts/header.js" type="module"></script>
+      <div class="orders-grid">
+        <div class="order-container"></div>
+      </div>
+    </div>
+
+    <script type="module" src="scripts/header.js"></script>
+    <script type="module" src="scripts/ordersReturns.js"></script>
   </body>
 </html>

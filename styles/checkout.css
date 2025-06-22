@@ -213,6 +213,25 @@
   width: 50px;
   font-size: 16px;
 }
+.cart-summary .view-products-link {
+  display: inline-block;
+  padding: 8px 15px;
+  text-decoration: none;
+  margin-top: 10px;
+}
+.button-primary {
+  color: rgb(33, 33, 33);
+  background-color: rgb(255, 216, 20);
+  border: 1px solid rgb(252, 210, 0);
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(213, 217, 217, 0.5);
+}
+.button-primary:disabled {
+  border: gray;
+  color: rgb(150, 150, 150);
+  background-color: #bcb8b8;
+}
 .hidden {
   display: none;
 }
