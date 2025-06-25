@@ -1,6 +1,6 @@
-import { cart } from "../data/cart.js";
-import { products } from "../data/products.js";
 import { addToCart } from "../data/cart.js";
+import { products } from "../data/products.js";
+
 import { updateCartQuantity } from "./header.js";
 const prodContainer = document.querySelector(".product-container");
 

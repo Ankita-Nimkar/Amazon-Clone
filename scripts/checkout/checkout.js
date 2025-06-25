@@ -162,6 +162,9 @@ function saveBtn() {
           document;
           document.querySelector(`.save-${targetId}`).classList.add("hidden");
         }
+        if (item.quantity < 1) {
+          alert("This is ont invalid number.");
+        }
       });
 
       document.querySelector(".js-order-summary").innerHTML = "";

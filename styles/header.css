@@ -133,6 +133,9 @@ button {
     width: 100px;
     border: 1px solid transparent;
   }
+  .smallS {
+    font-size: 13px;
+  }
   .cart-icon {
     width: 50px;
   }
@@ -159,8 +162,11 @@ button {
   .cart-hover {
     color: white;
     width: 180px;
+    box-sizing: border-box;
   }
-  .cart-hover:hover {
+
+  .cart-hover:hover,
+  .return-orders:hover {
     border-color: aliceblue;
     padding: 5px;
     box-sizing: border-box;

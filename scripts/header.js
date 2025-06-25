@@ -1,4 +1,5 @@
 import { cart } from "../data/cart.js";
+
 export function updateCartQuantity() {
   let updateCartQuantity = 0;
 

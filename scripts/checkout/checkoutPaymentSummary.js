@@ -1,5 +1,7 @@
 import { cart } from "../../data/cart.js";
-console.log(cart);
+import { addOrders } from "../../data/orders.js";
+import { itemPrice, calTax, itemTotalPrice } from "../utils/totalMoney.js";
+
 let updateCartQuantity = 0;
 
 cart.forEach((cartItem) => {
@@ -47,34 +49,26 @@ export function renderPaymentSummary(updateCartQuantity) {
 
     <button class="place-order-button button-primary" ${
       cart.length === 0 && `disabled`
-    } >
+    }  >
       Place your order
     </button>
   `;
 
   document.querySelector(".js-payment-summary").innerHTML = paymentSummaryHTML;
+  document
+    .querySelector(".place-order-button")
+    .addEventListener("click", () => {
+      window.location.href = "ordersReturns.html";
+      console.log(cart);
+
+      addOrders({
+        id: crypto.randomUUID(),
+        cart: cart,
+        total: itemTotalPrice(),
+        date: new Date(),
+      });
+
+      localStorage.removeItem("cart");
+    });
 }
 renderPaymentSummary(updateCartQuantity);
-// document.querySelector(".total-checkout-items").innerHTML = cartTotalQty;
-
-function itemPrice() {
-  let total = 0;
-  cart.forEach((el) => {
-    total += (el.priceCents / 100).toFixed(2) * el.quantity;
-  });
-
-  return Number(total.toFixed(2));
-}
-function calTax() {
-  let tax = (itemPrice() * 0.1).toFixed(2);
-  return Number(tax);
-}
-console.log();
-
-function itemTotalPrice() {
-  let totalP = calTax() + itemPrice();
-  return totalP.toFixed(2);
-}
-
-// Enable the button
-// button.disabled = false;

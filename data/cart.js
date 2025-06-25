@@ -16,15 +16,20 @@ export function addToCart(targetId) {
         `.quantity-select-${product.id}`
       );
       if (!productExist) {
-        let newProduct = { ...product, quantity: Number(inputElement.value) };
+        let newProduct = {
+          ...product,
+          quantity: 1,
+        };
         cart.push(newProduct);
       } else {
         cart.forEach((prod) => {
           if (prod.id === targetId) {
-            if (Number(inputElement.value) > 1) {
-              prod.quantity += Number(inputElement.value);
-            } else {
-              prod.quantity += 1;
+            if (Number(inputElement) !== 0) {
+              if (Number(inputElement.value) > 1) {
+                prod.quantity += Number(inputElement.value);
+              } else {
+                prod.quantity += 1;
+              }
             }
           }
         });
