@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tracking</title>
+
+    <!-- This code is needed for responsive design to work.
+      (Responsive design = make the website look good on
+      smaller screen sizes like a phone or a tablet). -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Load a font called Roboto from Google Fonts. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Here are the CSS files for this page. -->
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/header.css" />
+    <link rel="stylesheet" href="styles/tracking.css" />
+  </head>
+  <body>
+    <header>
+      <a href="index.html">
+        <img
+          src="./images/amazon-mobile-logo-white.png"
+          alt="amazon logo"
+          class="amazon-mobile-logo"
+        />
+        <img
+          src="./images/amazon-logo-white.png"
+          alt="amazon logo"
+          class="amazon-logo"
+        />
+      </a>
+
+      <div class="search-tab">
+        <input type="text" placeholder="Search" id="search-bar" />
+        <button class="search-btn">
+          <img
+            src="./images/search-icon.png"
+            alt="search icon"
+            srcset=""
+            class="search-icon"
+          />
+        </button>
+      </div>
+
+      <div class="hamburger-menu">
+        <div class="up-line line"></div>
+        <div class="mid-line line"></div>
+        <div class="bot-line line"></div>
+      </div>
+
+      <div class="overlay">
+        <ul class="menu-items">
+          <li>
+            <a class="return-orders" href="ordersReturns.html"
+              >Returns & Orders</a
+            >
+          </li>
+          <li>
+            <a class="cart" href="checkout.html"
+              >Cart(<span class="cart-quantity"></span>)</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="desktop-links">
+        <ul class="menu-items">
+          <li class="return-orders">
+            <a href="ordersReturns.html"
+              ><span class="smallS">Returns</span> & Orders</a
+            >
+          </li>
+          <li class="cart cart-hover cart-btn">
+            <img
+              src="./images/cart-icon.png"
+              alt="cart-icon"
+              srcset=""
+              class="cart-icon"
+            />
+            <span class="cart-quantity"></span>
+            <a class="cart" href="checkout.html">Cart</a>
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <div class="main"></div>
+
+    <script src="scripts/header.js" type="module"></script>
+    <script src="scripts/tracking.js" type="module"></script>
+  </body>
+</html>

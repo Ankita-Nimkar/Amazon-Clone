@@ -40,7 +40,9 @@ export function addToCart(targetId) {
       const element = document.querySelector(`.added-msg-${product.id}`);
       if (element) {
         element.classList.remove("addTransition");
-        element.innerHTML = "Added";
+        element.innerHTML = `<img src="./images/checkmark.png">
+        <p class="added">Added</p>
+        `;
 
         setTimeout(() => {
           element.classList.add("addTransition");

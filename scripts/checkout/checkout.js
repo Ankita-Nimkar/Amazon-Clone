@@ -1,7 +1,7 @@
 import { cart } from "../../data/cart.js";
 import { renderPaymentSummary } from "./checkoutPaymentSummary.js";
 // console.log(updateQuantity());
-
+console.log(cart);
 updateCartQuantity();
 
 function renderCartSummaryHtml() {
@@ -11,7 +11,7 @@ function renderCartSummaryHtml() {
     <div class="cart-item-container
       js-cart-item-container-${el.id}">
       <div class="delivery-date">
-        Delivery date: Tuesday, June 21
+        Delivery date: 
       </div>
 
       <div class="cart-item-details-grid">
@@ -53,46 +53,17 @@ function renderCartSummaryHtml() {
 
         <div class="delivery-options">
           <div class="delivery-options-title">
-            Choose a delivery option:
+            Choose a delivery date:
           </div>
           <div class="delivery-option">
-            <input type="radio" checked
-              class="delivery-option-input"
-              name="delivery-option-${el.id}">
-            <div>
-              <div class="delivery-option-date">
-                Tuesday, June 21
-              </div>
-              <div class="delivery-option-price">
-                FREE Shipping
-              </div>
-            </div>
-          </div>
-          <div class="delivery-option">
-            <input type="radio"
-              class="delivery-option-input"
-              name="delivery-option-${el.id}">
-            <div>
-              <div class="delivery-option-date">
-                Wednesday, June 15
-              </div>
-              <div class="delivery-option-price">
-                $4.99 - Shipping
-              </div>
-            </div>
-          </div>
-          <div class="delivery-option">
-            <input type="radio"
-              class="delivery-option-input"
-              name="delivery-option-${el.id}">
-            <div>
-              <div class="delivery-option-date">
-                Monday, June 13
-              </div>
-              <div class="delivery-option-price">
-                $9.99 - Shipping
-              </div>
-            </div>
+           <div style= text-align:center>
+           <input type="date"   min="" class="datepicker" name="delivery-option" data-date-id="${
+             el.id
+           }" required>
+   
+    </div>
+
+          
           </div>
         </div>
       </div>
@@ -233,6 +204,65 @@ function updateQuantity() {
   return updateCartQuantity;
 }
 
+// //////////////////delivery date
+document.querySelectorAll(".datepicker").forEach((el) => {
+  const month = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  el.required = true;
+  el.addEventListener("change", function (event) {
+    let dateId = event.target.dataset.dateId;
+    const selectedDate = event.target.value; // Get the selected date value
+
+    cart.forEach((item) => {
+      if (item.id === dateId) {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        //////////min date
+        const tomorrow = new Date(today);
+        tomorrow.setDate(today.getDate() + 1); // Add one day to get tomorrow
+        tomorrow.setHours(0, 0, 0, 0);
+
+        const maxDays = new Date(today);
+        maxDays.setDate(today.getDate() + 15);
+        maxDays.setHours(0, 0, 0, 0);
+
+        console.log(selectedDate);
+        const inputDate = new Date(selectedDate);
+        inputDate.setHours(0, 0, 0, 0);
+
+        const parts = selectedDate.split("-");
+        console.log(inputDate);
+        console.log(tomorrow);
+        console.log(maxDays);
+        const formattedDate = `${month[Number(parts[1]) - 1]} ${parts[2]}`;
+        if (inputDate < tomorrow) {
+          // 4. Trigger the alert
+          alert("The selected date is before tomorrow!");
+        } else if (inputDate > maxDays) {
+          alert("select date before 15 days");
+        } else {
+          item.deliveryDate = formattedDate;
+          document.querySelector(
+            `.js-cart-item-container-${dateId}> .delivery-date`
+          ).innerHTML = ` Delivery date: ${formattedDate}`;
+        }
+      }
+    });
+  });
+});
 function addToLocalStorage(cart) {
   localStorage.setItem("cart", JSON.stringify(cart));
 }

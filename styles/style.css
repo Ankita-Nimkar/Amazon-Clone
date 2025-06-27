@@ -57,7 +57,9 @@ select {
   opacity: 0;
   transition: opacity 1s;
 }
-
+.added {
+  display: inline;
+}
 @media (min-width: 640px) {
   .product-container {
     display: grid;

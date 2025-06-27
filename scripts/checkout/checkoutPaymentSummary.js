@@ -57,16 +57,22 @@ export function renderPaymentSummary(updateCartQuantity) {
   document.querySelector(".js-payment-summary").innerHTML = paymentSummaryHTML;
   document
     .querySelector(".place-order-button")
-    .addEventListener("click", () => {
-      window.location.href = "ordersReturns.html";
+    .addEventListener("click", (e) => {
+      console.log(e);
       console.log(cart);
-
-      addOrders({
-        id: crypto.randomUUID(),
-        cart: cart,
-        total: itemTotalPrice(),
-        date: new Date(),
-      });
+      const isValidated = cart.every((el) => el.deliveryDate);
+      console.log(isValidated);
+      if (!isValidated) {
+        alert("Select Delivery Date");
+      } else {
+        window.location.href = "ordersReturns.html";
+        addOrders({
+          id: crypto.randomUUID(),
+          cart: cart,
+          total: itemTotalPrice(),
+          date: `${new Date().getMonth() + 1} ${new Date().getDate()}`,
+        });
+      }
 
       localStorage.removeItem("cart");
     });

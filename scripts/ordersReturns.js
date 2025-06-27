@@ -6,7 +6,7 @@ import { updateCartQuantity } from "./header.js";
 // console.log(itemTotalPrice(), calTax(), itemPrice());
 
 console.log(orders);
-function renderProductDetailHtml(prod) {
+function renderProductDetailHtml(prod, orderId) {
   let productDetailHtml = `
   <div class="product-image-container">
               <img src="${prod.image}">
@@ -16,7 +16,7 @@ function renderProductDetailHtml(prod) {
                 ${prod.name}
               </div>
               <div class="product-delivery-date">
-                Arriving on: August 15
+                Arriving on: ${prod.deliveryDate}
               </div>
               <div class="product-quantity">
                 Quantity: ${prod.quantity}
@@ -28,7 +28,7 @@ function renderProductDetailHtml(prod) {
               </button>
             </div>
               <div class="product-actions">
-              <a href="tracking.html?orderId=123&productId=456">
+              <a href="tracking.html?orderId=${orderId}&productId=${prod.id}">
                 <button class="track-package-button button-secondary">
                   Track package
                 </button>
@@ -80,7 +80,7 @@ function renderOrderContainerHtml() {
             `;
 
     for (let j = 0; j < orders[i].cart.length; j++) {
-      html += renderProductDetailHtml(orders[i].cart[j]);
+      html += renderProductDetailHtml(orders[i].cart[j], orders[i].id);
     }
 
     html += `  </div></div>`;
@@ -103,7 +103,9 @@ function buyAgainButtonBtn() {
       addToCart(targetId);
       console.log("cart:", cart);
       updateCartQuantity();
-      e.target.parentElement.innerHTML = ` <p class="added-msg-${targetId}">Added</p>`;
+      e.target.parentElement.innerHTML = ` 
+      <img src="./images/checkmark.png">
+      <p class="added-${targetId}">Added</p>`;
     });
   });
 }

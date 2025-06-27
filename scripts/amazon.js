@@ -63,10 +63,19 @@ const searchBtn = document.querySelector(".search-btn");
 searchBtn.addEventListener("click", () => {
   prodHtml = "";
   prodContainer.innerHTML = "";
-  let word = searchBar.value.toLowerCase().slice(0, 4);
+  let word = searchBar.value;
+  console.log(word);
 
   const filteredArr = products.filter((prod) => {
-    return prod.name.toLowerCase().includes(word);
+    console.log(prod.keywords);
+    for (let i = 0; i < prod.keywords.length; i++) {
+      const element = prod.keywords[i];
+      if (element.includes(word)) {
+        return prod;
+      }
+    }
+
+    // console.log(products.keywords.includes(word));
   });
   console.log(filteredArr);
   if (filteredArr.length === 0) {
