@@ -1,9 +1,6 @@
 .main {
-  max-width: 850px;
   margin-top: 90px;
   margin-bottom: 100px;
-  padding-left: 20px;
-  padding-right: 20px;
 
   /* margin-left: auto;
      margin-right auto;
@@ -81,6 +78,9 @@
 .addTransition {
   opacity: 0;
   transition: opacity 1s;
+}
+.hidden {
+  display: none;
 }
 @media (max-width: 575px) {
   .cart-quantity {

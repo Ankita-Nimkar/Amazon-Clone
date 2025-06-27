@@ -2,10 +2,9 @@ import { addToCart } from "../data/cart.js";
 import { products } from "../data/products.js";
 
 import { updateCartQuantity } from "./header.js";
-const prodContainer = document.querySelector(".product-container");
 
-let prodHtml = "";
 function renderHtml(prod) {
+  let prodHtml = "";
   prodHtml += `
   <div class="product">
   <div class="product-image" >
@@ -48,7 +47,7 @@ function renderHtml(prod) {
   </div>
 
   `;
-  return (prodContainer.innerHTML = prodHtml);
+  return (document.querySelector(".product-container").innerHTML += prodHtml);
 }
 
 ////// render Html
@@ -57,38 +56,38 @@ products.forEach((prod) => {
 });
 
 // /////////////////////////search btn/////////////////////////////////////////////
+export function searchBtn() {
+  const searchBar = document.querySelector("#search-bar");
+  const searchBtn = document.querySelector(".search-btn");
+  searchBtn.addEventListener("click", () => {
+    let word = searchBar.value;
 
-const searchBar = document.querySelector("#search-bar");
-const searchBtn = document.querySelector(".search-btn");
-searchBtn.addEventListener("click", () => {
-  prodHtml = "";
-  prodContainer.innerHTML = "";
-  let word = searchBar.value;
-  console.log(word);
-
-  const filteredArr = products.filter((prod) => {
-    console.log(prod.keywords);
-    for (let i = 0; i < prod.keywords.length; i++) {
-      const element = prod.keywords[i];
-      if (element.includes(word)) {
-        return prod;
+    const filteredArr = products.filter((prod) => {
+      for (let i = 0; i < prod.keywords.length; i++) {
+        const element = prod.keywords[i];
+        if (element.includes(word)) {
+          return prod;
+        }
       }
+
+      // console.log(products.keywords.includes(word));
+    });
+    console.log(filteredArr);
+    if (filteredArr.length === 0) {
+      document.querySelector(
+        ".product-container"
+      ).innerHTML = `<p>No Product Found</p>`;
+    } else {
+      document.querySelector(".product-container").innerHTML = "";
+      filteredArr.forEach((prod) => {
+        return renderHtml(prod);
+      });
     }
 
-    // console.log(products.keywords.includes(word));
+    addToCartBtn();
   });
-  console.log(filteredArr);
-  if (filteredArr.length === 0) {
-    prodContainer.innerHTML = `<p>No Product Found</p>`;
-  } else {
-    filteredArr.forEach((prod) => {
-      return renderHtml(prod);
-    });
-  }
-
-  addToCartBtn();
-});
-
+}
+searchBtn();
 function addToCartBtn() {
   ////////add to cart btn ////////////////////////////////////////////////////////////
 

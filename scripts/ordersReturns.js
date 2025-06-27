@@ -3,6 +3,7 @@ import { products } from "../data/products.js";
 import { itemPrice } from "./utils/totalMoney.js";
 import { addToCart, cart } from "../data/cart.js";
 import { updateCartQuantity } from "./header.js";
+import { searchBtn } from "./amazon.js";
 // console.log(itemTotalPrice(), calTax(), itemPrice());
 
 console.log(orders);
@@ -109,4 +110,16 @@ function buyAgainButtonBtn() {
     });
   });
 }
+
 buyAgainButtonBtn();
+document.querySelector(".search-btn").addEventListener("click", () => {
+  const searchBar = document.querySelector("#search-bar");
+
+  if (searchBar.value) {
+    document.querySelector(".page-title").classList.add("hidden");
+    document.querySelector(".orders-grid").classList.add("hidden");
+    document.querySelector(".product-container").classList.remove("hidden");
+  }
+});
+
+searchBtn();
